@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}LinkedIn Scraper{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
+  {% block head_assets %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  {% block navbar %}{% endblock %}
+  <div class="page-wrapper">
+    {% block body %}{% endblock %}
+  </div>
+  <footer class="site-footer">
+    Made by
+    <a href="https://github.com/Theyka" target="_blank" rel="noopener noreferrer">Theyka</a>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 007.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.69-3.87-1.38-3.87-1.38-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.04 1.78 2.72 1.27 3.38.97.11-.75.41-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 015.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.73.8 1.18 1.83 1.18 3.08 0 4.41-2.7 5.38-5.27 5.67.42.36.79 1.07.79 2.17v3.21c0 .31.21.67.79.56A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+  </footer>
+  <div class="modal-overlay" id="app-modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="app-modal-title">
+      <div class="modal-head">
+        <h2 class="modal-title" id="app-modal-title"></h2>
+        <button class="modal-close" id="app-modal-close" type="button" aria-label="Close dialog">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <p class="modal-text" id="app-modal-message"></p>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn-secondary" id="app-modal-cancel" type="button">Cancel</button>
+        <button class="modal-btn modal-btn-primary" id="app-modal-confirm" type="button">Continue</button>
+      </div>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

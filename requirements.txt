@@ -1,0 +1,4 @@
+Flask>=3.0
+Flask-Cors>=6.0
+python-dotenv>=1.0
+curl_cffi>=0.7

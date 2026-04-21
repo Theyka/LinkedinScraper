@@ -1,0 +1,72 @@
+{% extends "layouts/authenticated.html" %}
+{% block title %}Dashboard - Profile Manager{% endblock %}
+
+{% block head_assets %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}" />
+{% endblock %}
+
+{% block body %}
+<div
+  class="main dashboard-page"
+  data-list-url="{{ url_for('profile.api_list_profiles') }}"
+  data-add-url="{{ url_for('profile.api_add_profile') }}"
+  data-delete-url="{{ url_for('profile.api_delete_profile') }}"
+  data-refresh-url="{{ url_for('profile.api_refresh_profile') }}"
+  data-view-url="{{ url_for('profile.view_profile') }}"
+>
+  <div class="page-title">Profiles</div>
+
+  <div class="stats-grid" id="stats-grid" hidden></div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="add-row">
+        <input
+          id="add-input"
+          type="text"
+          placeholder="Paste a LinkedIn profile URL…"
+        />
+        <button class="btn-primary" id="add-btn" type="button">Add Profile</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="table-header">
+      <h3>All Profiles <span class="count-badge" id="count">0</span></h3>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all" type="button">All</button>
+        <button class="filter-btn" data-filter="open_to_work" type="button">Open to Work</button>
+        <button class="filter-btn" data-filter="hiring" type="button">Hiring</button>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Profile</th>
+          <th>Headline</th>
+          <th>Status</th>
+          <th>Last Scraped</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <tr>
+          <td colspan="5">
+            <div class="empty-state">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+              <p>No profiles yet. Add a LinkedIn URL above.</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
